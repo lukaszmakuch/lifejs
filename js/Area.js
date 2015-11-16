@@ -55,6 +55,6 @@ var GOL = (function (GOL) {
         
         return neighbors;
     };
-    
+
     return GOL;
 } (GOL || {}));
