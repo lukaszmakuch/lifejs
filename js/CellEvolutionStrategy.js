@@ -1,31 +1,15 @@
 var GOL = (function (GOL) {
     
-    GOL.CellEvolutionStrategy = function()
-    {
-    };
+    GOL.CellEvolutionStrategy = function() {};
     
     GOL.CellEvolutionStrategy.prototype.getNextCellInPlaceOf = function(cell, sourceArea)
     {
         var numberOfAliveNeighbors = this.countAliveNeighborsOf(cell, sourceArea);
-        if (cell.isAlive()) {
-            if (numberOfAliveNeighbors < 2) {
-                return new GOL.Cell(false);
-            }
-
-            if ((numberOfAliveNeighbors >= 2) && (numberOfAliveNeighbors <= 3)) {
-                return new GOL.Cell(true);
-            }
-
-            if (numberOfAliveNeighbors > 3) {
-                return new GOL.Cell(false);
-            }
-        } else {
-            if (numberOfAliveNeighbors === 3) {
-                return new GOL.Cell(true);
-            } else {
-                return new GOL.Cell(false);
-            }
-        }
+        var nextCellIsAlive = (
+            (cell.isAlive() && (numberOfAliveNeighbors >= 2) && (numberOfAliveNeighbors <= 3))
+            || (!cell.isAlive() && (numberOfAliveNeighbors === 3))
+        );
+        return new GOL.Cell(nextCellIsAlive);
     };
     
     GOL.CellEvolutionStrategy.prototype.countAliveNeighborsOf = function(cell, sourceArea)
