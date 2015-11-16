@@ -42,16 +42,15 @@ var GOL = (function (GOL) {
         var cellCoordinates = this.getCoordinatesOf(cell);
         var cellX = cellCoordinates.x;
         var cellY = cellCoordinates.y;
-        var self = this;
-        this.relativeNeighborLocation.forEach(function (neighborLocation) {
-            var singleNeighbor = self.getCellWithCoordinates(new GOL.Coordinates(
+        this.relativeNeighborLocation.forEach((function (neighborLocation) {
+            var singleNeighbor = this.getCellWithCoordinates(new GOL.Coordinates(
                 cellX + neighborLocation[0], 
                 cellY + neighborLocation[1]
             ));
             if (undefined !== singleNeighbor) {
                 neighbors.push(singleNeighbor);
             }
-        });
+        }).bind(this));
         
         return neighbors;
     };
