@@ -8,6 +8,10 @@ define("Cell", function () {
     {
         return this.isAliveBoolean;
     };
+    
+    Cell.prototype.toggle = function() {
+        this.isAliveBoolean = !this.isAliveBoolean;
+    };
   
     return Cell;
 });

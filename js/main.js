@@ -26,20 +26,6 @@ require([
 ) {
     var areaF = new AreaFactory();
     var area = areaF.createArea(50, 20);
-    
-    area.getCellWithCoordinates(new Coordinates(3, 4)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 5)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 0)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(5, 0)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(4, 0)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(4, 1)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 0)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 1)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 2)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(3, 6)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(2, 6)).isAliveBoolean = true;
-    area.getCellWithCoordinates(new Coordinates(1, 5)).isAliveBoolean = true;
-    
     var mediator = new Mediator();
     var areaEvolutionStrategy = new AreaEvolutionStrategy(new CellEvolutionStrategy(), mediator);
     var evolution = new Evolution(areaEvolutionStrategy, 250);
@@ -55,4 +41,7 @@ require([
     document.getElementById("gol-evolution-stop").onclick = function () {
         evolution.stop();
     };
+    mediator.subscribe("area.cell.clicked", function (cell) {
+        cell.toggle();
+    });
 });
