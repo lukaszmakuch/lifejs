@@ -12,6 +12,10 @@ define("Cell", function () {
     Cell.prototype.toggle = function() {
         this.isAliveBoolean = !this.isAliveBoolean;
     };
+    
+    Cell.prototype.kill = function() {
+        this.isAliveBoolean = false;
+    };
   
     return Cell;
 });

@@ -15,6 +15,12 @@ define(["Cell"], function(Cell) {
             cell.toggle();
             expect(cell.isAlive()).toBeTruthy();
         });
+        
+        it("may be killed", function () {
+            var cell = new Cell(true);
+            cell.kill();
+            expect(cell.isAlive()).toBeFalsy();
+        });
     });
     
 });

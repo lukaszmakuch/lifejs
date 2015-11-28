@@ -1,4 +1,4 @@
-define(["Area", "Coordinates", "AreaEvolutionStrategy", "mediator-js"], function (Area, Coordinates, AreaEvolutionStrategy, Mediator) {
+define(["Area", "Coordinates", "AreaEvolutionStrategy"], function (Area, Coordinates, AreaEvolutionStrategy, Mediator) {
     describe("strategy of processing the whole area", function () {
 
         it("uses CellEvolutionStrategy to update cells", function () {
@@ -22,18 +22,10 @@ define(["Area", "Coordinates", "AreaEvolutionStrategy", "mediator-js"], function
                 }
             };
             
-            var mediator = new Mediator();
-            spyOn(mediator, "publish");
-            
-            var evolutionStrategy = new AreaEvolutionStrategy(
-                cellEvolutionStrategy,
-                mediator
-            );
+            var evolutionStrategy = new AreaEvolutionStrategy(cellEvolutionStrategy);
 
-            expect(mediator.publish).not.toHaveBeenCalled();
             evolutionStrategy.replaceCellsOfAreaWithNewGeneration(area);
-            expect(mediator.publish).toHaveBeenCalledWith("area.cells.new_generation", area);
-
+            
             expect(area.getCellWithCoordinates(cell1Pos)).toBe(cell1Replacement);
             expect(area.getCellWithCoordinates(cell2Pos)).toBe(cell2Replacement);
         });

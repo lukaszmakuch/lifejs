@@ -12,8 +12,7 @@ require([
     "AreaView",
     "CellEvolutionStrategy",
     "Evolution",
-    "mediator-js",
-    "Coordinates"
+    "mediator-js"
 ], function (
     Area,
     AreaEvolutionStrategy,
@@ -21,14 +20,13 @@ require([
     AreaView,
     CellEvolutionStrategy,
     Evolution,
-    Mediator,
-    Coordinates
+    Mediator
 ) {
     var areaF = new AreaFactory();
-    var area = areaF.createArea(50, 20);
+    var area = areaF.createArea(80, 45);
     var mediator = new Mediator();
-    var areaEvolutionStrategy = new AreaEvolutionStrategy(new CellEvolutionStrategy(), mediator);
-    var evolution = new Evolution(areaEvolutionStrategy, 250);
+    var areaEvolutionStrategy = new AreaEvolutionStrategy(new CellEvolutionStrategy());
+    var evolution = new Evolution(areaEvolutionStrategy, 250, mediator);
     evolution.addSubject(area);
     var view = new AreaView(
         document.getElementById("gol-view").getContext("2d"),
@@ -40,6 +38,9 @@ require([
     };
     document.getElementById("gol-evolution-stop").onclick = function () {
         evolution.stop();
+    };
+    document.getElementById("gol-evolution-reset").onclick = function () {
+        evolution.killAllCells();
     };
     mediator.subscribe("area.cell.clicked", function (cell) {
         cell.toggle();
