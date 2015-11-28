@@ -4,6 +4,7 @@ module.exports = function (config) {
         files: [
             'node_modules/requirejs/require.js',
             'node_modules/karma-requirejs/lib/adapter.js',
+            'node_modules/mediator-js/mediator.min.js',
             {pattern: 'js/tests/*Spec.js', included: false},
             {pattern: 'js/gol/*.js', included: false},
             'js/tests/main.js'
