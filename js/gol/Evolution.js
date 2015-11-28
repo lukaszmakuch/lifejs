@@ -15,6 +15,7 @@ define("Evolution", function () {
     
     Evolution.prototype.start = function()
     {
+        clearInterval(this.timeIntervalHandler);
         this.timeIntervalHandler = setInterval((function () {
             this.subjects.forEach((function (area) {
                 this.areaEvolutionStrategy.replaceCellsOfAreaWithNewGeneration(area);
