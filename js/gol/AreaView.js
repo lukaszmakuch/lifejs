@@ -1,6 +1,14 @@
 define("AreaView", [], function () {
-    var AreaView = function (canvas2dContext) {
+    var AreaView = function (canvas2dContext, renderedArea, mediator) {
         this.ctx = canvas2dContext;
+        this.renderedArea = renderedArea;
+        this.mediator = mediator;
+        this.render(renderedArea);
+        mediator.subscribe("area.cells.new_generation", (function (newArea) {
+            if (newArea === this.renderedArea) {
+                this.render(newArea);
+            }
+        }).bind(this));
     };
 
     AreaView.prototype.render = function (area) {

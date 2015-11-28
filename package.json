@@ -13,6 +13,7 @@
     "karma-jasmine": "^0.3.6"
   },
   "dependencies": {
+    "mediator-js": "^0.9.9",
     "requirejs": "^2.1.22"
   }
 }

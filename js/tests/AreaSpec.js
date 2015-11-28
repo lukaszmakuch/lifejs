@@ -9,7 +9,7 @@ define(["Area", "Cell", "Coordinates"], function (Area, Cell, Coordinates) {
             area.addCell(cell, coordinates);
             expect(area.getCellWithCoordinates(coordinates) === cell).toBeTruthy();
         });
-
+        
         it("allow to get all cells", function () {
             var area = new Area(10, 20);
             var cell1 = new Cell("cell1");
