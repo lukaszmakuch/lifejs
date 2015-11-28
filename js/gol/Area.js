@@ -1,6 +1,5 @@
-var GOL = (function (GOL) {
-    
-    GOL.Area = function(width, height)
+define("Area", ["Coordinates"], function (Coordinates) {
+    var Area = function(width, height)
     {
         this.width = width;
         this.height = height;
@@ -13,37 +12,37 @@ var GOL = (function (GOL) {
         ];
     };
     
-    GOL.Area.prototype.addCell = function(cell, coordinates)
+    Area.prototype.addCell = function(cell, coordinates)
     {
         this.cellsByCoordinates.set(coordinates.getHash(), cell);
         this.coordinatesByCells.set(cell, coordinates);
     };
     
-    GOL.Area.prototype.getCellWithCoordinates = function(coordinates)
+    Area.prototype.getCellWithCoordinates = function(coordinates)
     {
         return this.cellsByCoordinates.get(coordinates.getHash());
     };
 
-    GOL.Area.prototype.getAllCells = function()
+    Area.prototype.getAllCells = function()
     {
         var cells = [];
         this.cellsByCoordinates.forEach(function (cell) { cells.push(cell); });
         return cells;
     };
 
-    GOL.Area.prototype.getCoordinatesOf = function (cell)
+    Area.prototype.getCoordinatesOf = function (cell)
     {
         return this.coordinatesByCells.get(cell);
     };
     
-    GOL.Area.prototype.getNeighborsOf = function(cell)
+    Area.prototype.getNeighborsOf = function(cell)
     {
         var neighbors = [];
         var cellCoordinates = this.getCoordinatesOf(cell);
         var cellX = cellCoordinates.x;
         var cellY = cellCoordinates.y;
         this.relativeNeighborLocation.forEach((function (neighborLocation) {
-            var singleNeighbor = this.getCellWithCoordinates(new GOL.Coordinates(
+            var singleNeighbor = this.getCellWithCoordinates(new Coordinates(
                 cellX + neighborLocation[0], 
                 cellY + neighborLocation[1]
             ));
@@ -53,7 +52,8 @@ var GOL = (function (GOL) {
         }).bind(this));
         
         return neighbors;
-    };
+    };    
+    
+    return Area;
+});
 
-    return GOL;
-} (GOL || {}));

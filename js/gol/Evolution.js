@@ -1,6 +1,5 @@
-var GOL = (function (GOL) {
-    
-    GOL.Evolution = function(areaEvolutionStrategy, cycleTimeMiliseconds)
+define("Evolution", function () {
+    var Evolution = function(areaEvolutionStrategy, cycleTimeMiliseconds)
     {
         this.subjects = [];
         this.areaEvolutionStrategy = areaEvolutionStrategy;
@@ -8,12 +7,12 @@ var GOL = (function (GOL) {
         this.timeIntervalHandler;
     };
     
-    GOL.Evolution.prototype.addSubject = function(area)
+    Evolution.prototype.addSubject = function(area)
     {
         this.subjects.push(area);
     };
     
-    GOL.Evolution.prototype.start = function()
+    Evolution.prototype.start = function()
     {
         this.timeIntervalHandler = setInterval((function () {
             this.subjects.forEach((function (area) {
@@ -22,10 +21,11 @@ var GOL = (function (GOL) {
         }).bind(this), this.cycleTimeMiliseconds);
     };
     
-    GOL.Evolution.prototype.stop = function()
+    Evolution.prototype.stop = function()
     {
         clearInterval(this.timeIntervalHandler);
     };
   
-    return GOL;
-} (GOL || {}));
+    return Evolution;
+});
+    

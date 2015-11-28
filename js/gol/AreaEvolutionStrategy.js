@@ -1,11 +1,10 @@
-var GOL = (function (GOL) {
-    
-    GOL.AreaEvolutionStrategy = function(cellEvolutionStrategy)
+define("AreaEvolutionStrategy", function () {
+    var AreaEvolutionStrategy = function(cellEvolutionStrategy)
     {
         this.cellEvolutionStrategy = cellEvolutionStrategy;
     };
     
-    GOL.AreaEvolutionStrategy.prototype.replaceCellsOfAreaWithNewGeneration = function(area)
+    AreaEvolutionStrategy.prototype.replaceCellsOfAreaWithNewGeneration = function(area)
     {
         var nextGenerationCells = new Map();
         area.getAllCells().forEach((function (originalCell) {
@@ -20,5 +19,5 @@ var GOL = (function (GOL) {
         });
     };
   
-    return GOL;
-} (GOL || {}));
+    return AreaEvolutionStrategy;
+});

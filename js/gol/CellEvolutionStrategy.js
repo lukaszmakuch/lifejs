@@ -1,18 +1,18 @@
-var GOL = (function (GOL) {
+define("CellEvolutionStrategy", ["Cell"], function (Cell) {
     
-    GOL.CellEvolutionStrategy = function() {};
+    var CellEvolutionStrategy = function() {};
     
-    GOL.CellEvolutionStrategy.prototype.getNextCellInPlaceOf = function(cell, sourceArea)
+    CellEvolutionStrategy.prototype.getNextCellInPlaceOf = function(cell, sourceArea)
     {
         var numberOfAliveNeighbors = this.countAliveNeighborsOf(cell, sourceArea);
         var nextCellIsAlive = (
             (cell.isAlive() && (numberOfAliveNeighbors >= 2) && (numberOfAliveNeighbors <= 3))
             || (!cell.isAlive() && (numberOfAliveNeighbors === 3))
         );
-        return new GOL.Cell(nextCellIsAlive);
+        return new Cell(nextCellIsAlive);
     };
     
-    GOL.CellEvolutionStrategy.prototype.countAliveNeighborsOf = function(cell, sourceArea)
+    CellEvolutionStrategy.prototype.countAliveNeighborsOf = function(cell, sourceArea)
     {
         var aliveNeighborsCounter = 0;
         sourceArea.getNeighborsOf(cell).forEach(function (neighbor) {
@@ -21,5 +21,5 @@ var GOL = (function (GOL) {
         return aliveNeighborsCounter;
     };
   
-    return GOL;
-} (GOL || {}));
+    return CellEvolutionStrategy;
+});
